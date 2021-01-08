@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 
 function Header(props) {
     const [value,setValue]= useState('');
-    
+
     const handleChange = e => {
         setValue(e.target.value);
       };
         const  handleSubmit = (e) => { 
+            e.stopPropagation();
             e.preventDefault();
             props.onSubmit({
                 id: Math.floor(Math.random() * 10000),

@@ -1,6 +1,7 @@
-import React from 'react'
-function todoList ({todos,completeTodo,removeTodo})  {
-    return (
+const todoList= ({todos,completeTodo,removeTodo},props) => {
+   
+	
+	return (
         <div>
             <section className="main">
 		<input className="toggle-all" type="checkbox" />
@@ -16,10 +17,7 @@ function todoList ({todos,completeTodo,removeTodo})  {
 					<input className="toggle" type="checkbox" />
 					<label> {todo.text}</label>
 					<button className="destroy"
-					  onClick={(e) =>
-						 removeTodo(todo.id)
-
-						} 
+					  onClick={() => removeTodo(todo.id)} 
 					   ></button>
 				</div>
 			</li>

@@ -6,7 +6,20 @@ import Header from './compenent/header';
 
 function App(props) {
   const [todos,setTodos]= useState([]);
+  const [count, setCount] = useState(0);
+ 
+  const mapTodos = (todo) => {
+    const todoMapped= todo.map((pic, index) => {
+      return (
+        setCount(prevState => (prevState+1))
+      )
+    })
+    setTodos(prevState => ([...prevState, ...todoMapped]))
+  }
+
+
   const addTodo = todo => {
+    setCount(prevState => (prevState+1) )
     if (!todo.text) {
       return;
     }
@@ -14,10 +27,11 @@ function App(props) {
     setTodos(newTodos);
     // console(todo,...todos);
 };
+
 const removeTodo = id=> {
-  const removedArr = [...todos.filter(todo => todo.id !== id)];
-  setTodos(removedArr);
+  const removedArr = [...todos].filter(todo => todo.id !== id);
   
+  setTodos(removedArr);
 };
 const completeTodo = id => {
   let updatedTodos = todos.map(todo => {
@@ -25,18 +39,26 @@ const completeTodo = id => {
        todo.isComplete = !todo.isComplete 
       }
       return todo ;
+      
   });
   setTodos(updatedTodos);
+}
+function clearCompleted (isComplete)  {
+  const clearCompArr = [...todos].filter(todo => todo.isComplete !== isComplete);
+  setTodos(clearCompArr);
+ 
+  return;
 }
   return (
     <div className="todoapp">
       <h1>todos</h1>
     <Header  onSubmit ={addTodo} />
    <TodoList 
-   todos={todos}
-   completeTodo ={completeTodo}
-    removeTodo={removeTodo}/>
-    <Footer />
+          todos={todos}
+          completeTodo ={completeTodo}
+          removeTodo={removeTodo}/>
+    <Footer clearCompleted={clearCompleted} 
+    count={count}/>
     </div>
   );
 }
