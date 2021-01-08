@@ -20,8 +20,9 @@ function App(props) {
 
 
   const addTodo = todo => {
-    setCount(prevState => (prevState+1) )
+    
     if (!todo.text) {
+      
       return;
     }
     const newTodos =[todo, ...todos];
