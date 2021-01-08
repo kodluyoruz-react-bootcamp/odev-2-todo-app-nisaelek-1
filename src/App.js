@@ -7,7 +7,8 @@ import Header from './compenent/header';
 function App(props) {
   const [todos,setTodos]= useState([]);
   const [count, setCount] = useState(0);
- 
+  const [completed, setCompleted] = useState('');
+
   const mapTodos = (todo) => {
     const todoMapped= todo.map((pic, index) => {
       return (
@@ -33,14 +34,20 @@ const removeTodo = id=> {
   
   setTodos(removedArr);
 };
+
 const completeTodo = id => {
   let updatedTodos = todos.map(todo => {
       if (todo.id === id) {
        todo.isComplete = !todo.isComplete 
+       
       }
+     
       return todo ;
-      
+     
   });
+  const completedList = [...todos].filter(todo => todo.isComplete !== id.isComplete);
+  setCompleted(completedList);
+  setCount(prevState => (prevState-1) );
   setTodos(updatedTodos);
 }
 function clearCompleted (isComplete)  {
@@ -58,7 +65,8 @@ function clearCompleted (isComplete)  {
           completeTodo ={completeTodo}
           removeTodo={removeTodo}/>
     <Footer clearCompleted={clearCompleted} 
-    count={count}/>
+    count={count}
+    completed={completed}/>
     </div>
   );
 }

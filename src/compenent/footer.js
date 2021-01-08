@@ -19,7 +19,7 @@ function footer(props) {
         <a>Active</a>
     </li>
     <li>
-        <a>Completed</a>
+        <a onClick={props.completedList}>Completed</a>
     </li>
 </ul>
 <button className="clear-completed" 
