@@ -30,8 +30,9 @@ function App(props) {
     // console(todo,...todos);
 };
 
-const removeTodo = id=> {
-  const removedArr = [...todos].filter(todo => todo.id !== id);
+const removeTodo = (todo)=> {
+  const removedArr = [...todos].filter(
+    removeT => removeT.id !== todo.id);
   
   setTodos(removedArr);
 };

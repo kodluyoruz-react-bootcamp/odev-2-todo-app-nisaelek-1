@@ -1,4 +1,4 @@
-const todoList= ({todos,completeTodo,removeTodo},props) => {
+const todoList= (props) => {
    
 	
 	return (
@@ -11,13 +11,13 @@ const todoList= ({todos,completeTodo,removeTodo},props) => {
 		
 		<ul className="todo-list">
 			{
-				 todos.map((todo,index) => (
-					<li className={todo.isComplete ? 'completed' :'todo-list' } key={index}>
-				<div className="view" key={todo.id} onClick={() => completeTodo(todo.id)} >
+				 props.todos.map((todo) => (
+					<li className={todo.isComplete ? 'completed' :'todo-list' } key={todo.id}>
+				<div className="view" key={todo.id} onClick={(event) =>props.completeTodo(todo.id)} >
 					<input className="toggle" type="checkbox" />
 					<label> {todo.text}</label>
 					<button className="destroy"
-					  onClick={() => removeTodo(todo.id)} 
+					  onClick={(event) => props.removeTodo(todo)} 
 					   ></button>
 				</div>
 			</li>
